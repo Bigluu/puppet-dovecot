@@ -94,10 +94,13 @@ namespace {
   prefix = <%= namespace['prefix'] %>
 <% end -%>
 <% if namespace['is_inbox'] %>
-  prefix = <%= namespace['is_inbox'] %>
+  inbox = <%= namespace['is_inbox'] %>
 <% end -%>
 <% if namespace['is_hidden'] %>
-  prefix = <%= namespace['is_hidden'] %>
+  hidden = <%= namespace['is_hidden'] %>
+<% end -%>
+<% if namespace['namespace_list'] %>
+  list = <%= namespace['namespace_list'] %>
 <% end -%>
 }
 <% end -%>
