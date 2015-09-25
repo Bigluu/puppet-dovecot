@@ -145,6 +145,9 @@ service auth-worker {
   # /etc/shadow. If this isn't necessary, the user should be changed to
   # $default_internal_user.
   #user = root
+<% if @auth_worker_user -%>
+  user = <%= @auth_worker_user %>
+<% end -%>
 }
 
 service dict {

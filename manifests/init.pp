@@ -39,6 +39,7 @@ class dovecot (
   $auth_listener_postfix_user = undef,
   $auth_listener_postfix_group = undef,
   $auth_user                  = undef,
+  $auth_worker_user           = undef,
   $imap_listener              = 'imap',
   $imaps_listener             = undef,
   $imap_listener_port         = undef,
