@@ -56,14 +56,15 @@ class dovecot (
   # All files in this scope are dovecot configuration files
   File {
     notify  => Service['dovecot'],
-    require => Package['dovecot'],
+    require => Package['dovecot-core'],
   }
 
   # Install plugins (sub-packages)
   dovecot::plugin { $plugins: before => Package['dovecot'] }
 
   # Main package and service it provides
-  package { 'dovecot': ensure => installed }
+  $dovecot_packages = [ 'dovecot-core', 'dovecot-imapd', 'dovecot-lmtpd', 'dovecot-mysql', ]
+  package { $dovecot_packages: ensure => installed }
   service { 'dovecot':
     enable    => true,
     ensure    => running,
