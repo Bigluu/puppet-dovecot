@@ -21,13 +21,20 @@ default_client_limit = <%= @default_client_limit %>
 #default_internal_user = dovecot
 
 service imap-login {
+<% if @imap_listener %>
   inet_listener imap {
     #port = 143
+<% if @imap_listener_port %>
+    port = <%= @imap_listener_port %>
+<% end -%>
   }
+<% end -%>
+<% if @imaps_listener %>
   inet_listener imaps {
     #port = 993
     #ssl = yes
   }
+<% end -%>
 
   # Number of connections to handle before starting a new process. Typically
   # the only useful values are 0 (unlimited) or 1. 1 is more secure, but 0
@@ -52,8 +59,17 @@ service pop3-login {
 }
 
 service lmtp {
-  unix_listener lmtp {
+  unix_listener <%= @lmtp_listener -%> {
     #mode = 0666
+<% if @lmtp_listener_mode -%>
+    mode = <%= @lmtp_listener_mode %>
+<% end -%>
+<% if @lmtp_listener_user -%>
+    user = <%= @lmtp_listener_user %>
+<% end -%>
+<% if @lmtp_listener_group -%>
+    group = <%= @lmtp_listener_group %>
+<% end -%>
   }
 
   # Create inet listener only if you can't use the above UNIX socket
@@ -105,12 +121,23 @@ service auth {
   #}
 <% if @auth_listener_postfix -%>
   unix_listener /var/spool/postfix/private/auth {
-    mode = 0666
+<% if @auth_listener_postfix_mode -%>
+    mode = <%= @auth_listener_postfix_mode %>
+<% end -%>
+<% if @auth_listener_postfix_user -%>
+    user = <%= @auth_listener_postfix_user %>
+<% end -%>
+<% if @auth_listener_postfix_group -%>
+    group = <%= @auth_listener_postfix_group %>
+<% end -%>
   }
 <% end -%>
 
   # Auth process is run as this user.
   #user = $default_internal_user
+<% if @auth_user -%>
+    user = <%= @auth_user %>
+<% end -%>
 }
 
 service auth-worker {
