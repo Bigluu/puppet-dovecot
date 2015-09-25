@@ -84,6 +84,24 @@ mail_location = <%= @mail_location %>
   # namespace handles them (empty prefix should always have this as "yes")
   #subscriptions = yes
 #}
+<% if @namespaces -%>
+<% @namespaces.each do |namespace| -%>
+namespace {
+<% if namespace['type'] %>
+  type = <%= namespace['type'] %>
+<% end -%>
+<% if namespace['prefix'] %>
+  prefix = <%= namespace['prefix'] %>
+<% end -%>
+<% if namespace['is_inbox'] %>
+  prefix = <%= namespace['is_inbox'] %>
+<% end -%>
+<% if namespace['is_hidden'] %>
+  prefix = <%= namespace['is_hidden'] %>
+<% end -%>
+}
+<% end -%>
+<% end -%>
 
 # Example shared namespace configuration
 #namespace {
