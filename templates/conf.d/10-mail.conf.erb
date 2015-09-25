@@ -87,7 +87,7 @@ mail_location = <%= @mail_location %>
 <% if @namespaces -%>
 <% @namespaces.each do |namespace| -%>
 namespace {
-<% if namespace['type'] %>
+<% if namespace['namespace_type'] %>
   type = <%= namespace['type'] %>
 <% end -%>
 <% if namespace['prefix'] %>
