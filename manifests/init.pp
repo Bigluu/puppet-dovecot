@@ -58,6 +58,8 @@ class dovecot (
   $postmaster_address         = undef,
   $hostname                   = undef,
   $lda_mail_plugins           = undef,
+  # 20-lmtp.conf
+  $lmtp_mail_plugins          = undef,
   # 90-sieve.conf
   $sieve                      = '~/.dovecot.sieve',
   $sieve_dir                  = '~/sieve',
