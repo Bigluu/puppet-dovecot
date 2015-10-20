@@ -62,6 +62,7 @@ class dovecot (
   $lmtp_mail_plugins          = undef,
   # 90-sieve.conf
   $sieve                      = '~/.dovecot.sieve',
+  $sieve_before               = undef,
   $sieve_dir                  = '~/sieve',
   # auth-sql.conf.ext
   $auth_sql_userdb_static     = undef
