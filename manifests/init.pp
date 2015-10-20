@@ -73,7 +73,7 @@ class dovecot (
   }
 
   # Install plugins (sub-packages)
-  dovecot::plugin { $plugins: before => Package['dovecot'] }
+  dovecot::plugin { $plugins: before => Package['dovecot-core'] }
 
   # Main package and service it provides
   $dovecot_packages = [ 'dovecot-core', 'dovecot-imapd', 'dovecot-lmtpd', 'dovecot-mysql', ]
